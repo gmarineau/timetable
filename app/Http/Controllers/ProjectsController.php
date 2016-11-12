@@ -39,6 +39,10 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|max:255',
+        ]);
+
         Project::create($request->all());
 
         return redirect()->route('projects.index');
@@ -63,7 +67,11 @@ class ProjectsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $project = Project::find($id);
+
+        return view('app.projects.edit')->with([
+            'project' => $project,
+        ]);
     }
 
     /**
@@ -75,7 +83,14 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:255',
+        ]);
+        
+        $project = Project::find($id);
+        $project->update($request->all());
+
+       return redirect()->route('projects.index');
     }
 
     /**

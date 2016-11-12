@@ -12,11 +12,9 @@
           <td>{{ $project->title }}</td>
           <td class="text-right">
             {{ Form::open(['route' => ['projects.destroy', $project->id], 'method' => 'DELETE']) }}
-              <a href="" class="btn btn-primary btn-xs">Edit</a>
+              <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-primary btn-xs">Edit</a>
               <button type="submit" class="btn btn-danger btn-xs">Delete</button>
             {{ Form::close() }}
-            
-            
           </td>
         </tr>
       @endforeach

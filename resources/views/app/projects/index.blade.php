@@ -2,10 +2,13 @@
 
 @section('content')
 
+  <div class="page-header">
+    <h1>Projects</h1>
+  </div>
 
+  <p><a href="{{ route('projects.create') }}" class="btn btn-primary">Create a project</a></p>
 
   <div class="panel panel-default">
-    <div class="panel-heading">Projects</div>
     <table class="table">
       @foreach ($projects as $project)
         <tr>

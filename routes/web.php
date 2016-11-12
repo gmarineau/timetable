@@ -12,6 +12,10 @@
 */
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect('/home');
+    }
+
     return view('app.home');
 });
 
@@ -22,3 +26,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('projects', 'ProjectsController');
+Route::resource('slots', 'SlotsController');

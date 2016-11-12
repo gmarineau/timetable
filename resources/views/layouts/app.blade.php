@@ -9,8 +9,8 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>{{ config('app.name', 'Laravel') }}</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
   <!-- Styles -->
   {{ Html::style('css/all.css') }}
 
@@ -33,13 +33,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">{{ config('app.name', 'Laravel') }}</a>
+        <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="{{ route('projects.index') }}">Projects</a></li>
-          <li><a href="#contact"></a></li>
+          <li class="{{ preg_match('#projects#', request()->path()) ? 'active' : '' }}"><a href="{{ route('projects.index') }}">Projects</a></li>
+          <li class="{{ preg_match('#slots#', request()->path()) ? 'active' : '' }}"><a href="{{ route('slots.index') }}">Slots</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           @if (Auth::check())
